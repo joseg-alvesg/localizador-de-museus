@@ -7,7 +7,11 @@ import com.betrybe.museumfinder.database.MuseumFakeDatabase;
 import com.betrybe.museumfinder.model.Coordinate;
 import com.betrybe.museumfinder.model.Museum;
 import static com.betrybe.museumfinder.util.CoordinateUtil.isCoordinateValid;
+
+import java.util.Optional;
+
 import com.betrybe.museumfinder.exception.InvalidCoordinateException;
+import com.betrybe.museumfinder.exception.MuseumNotFoundException;
 
 @Service
 public class MuseumService implements MuseumServiceInterface {
@@ -21,8 +25,14 @@ public class MuseumService implements MuseumServiceInterface {
 
   @Override
   public Museum getClosestMuseum(Coordinate coordinate, Double maxDistance) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getClosestMuseum'");
+    if (!isCoordinateValid(coordinate)) {
+      throw new InvalidCoordinateException("Invalid coordinate");
+    }
+    Optional<Museum> museum = database.getClosestMuseum(coordinate, maxDistance);
+    if (museum.isEmpty()) {
+      throw new MuseumNotFoundException("No museum found");
+    }
+    return museum.get();
   }
 
   @Override
