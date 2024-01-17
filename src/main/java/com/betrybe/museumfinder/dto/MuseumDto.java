@@ -2,6 +2,9 @@ package com.betrybe.museumfinder.dto;
 
 import com.betrybe.museumfinder.model.Coordinate;
 
+/**
+ * this class represents a museum.
+ */
 public record MuseumDto(
     Long id,
     String name,
