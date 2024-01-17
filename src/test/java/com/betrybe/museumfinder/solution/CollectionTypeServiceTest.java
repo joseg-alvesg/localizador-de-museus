@@ -5,7 +5,6 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,7 +33,6 @@ class CollectionTypeServiceTest {
   @DisplayName("Teste do método countByCollectionTypes")
   void testCountByCollectionTypes() {
     String typesList = "hist,art,filos";
-    String[] collectionTypes = new String[] { "hist", "art", "filos" };
 
     when(museumFakeDatabase.countByCollectionType("hist")).thenReturn(1L);
     when(museumFakeDatabase.countByCollectionType("art")).thenReturn(2L);
